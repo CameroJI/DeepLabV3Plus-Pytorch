@@ -58,8 +58,6 @@ class Cityscapes(data.Dataset):
         self.targets_dir = os.path.join(f'{root}/gtFine/labels', split)
         self.transform = transform
 
-        print(f'{root}/gtFine/images')
-
         self.split = split
         self.images = []
         self.targets = []
