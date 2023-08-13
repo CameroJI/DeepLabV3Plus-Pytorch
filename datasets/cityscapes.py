@@ -23,21 +23,21 @@ class Cityscapes(data.Dataset):
     CityscapesClass = namedtuple('CityscapesClass', ['name', 'id', 'train_id', 'category', 'category_id',
                                                      'has_instances', 'ignore_in_eval', 'color'])
     classes = [
-        #       name                        id    trainId   category               catId     hasInstances   ignoreInEval   color
-        Label(  'unlabeled'               ,  0 ,    255 , 'frame'                   , 0       , False       , True     , (  255, 255, 255) ),
-        Label(  'black_background'        ,  1 ,    255 , 'Black Background'        , 1       , False       , True     , (  127, 127, 127) ),
-        Label(  'liver'                   ,  2 ,      0 , 'Liver'                   , 2       , True        , False    , (  255, 114, 114) ),
-        Label(  'gastrointestinal_tract'  ,  3 ,      1 , 'Gastrointestinal Tract'  , 3       , True        , False    , (  231,  70, 156) ),
-        Label(  'fat'                     ,  4 ,      2 , 'Fat'                     , 4       , True        , False    , (  186, 183,  75) ),
-        Label(  'grasper'                 ,  5 ,      3 , 'Instrument'              , 5       , True        , False    , (  170, 255,   0) ),
-        Label(  'connective_tissue'       ,  6 ,      4 , 'Connective Tissue'       , 6       , True        , False    , (  255,  85,   0) ),
-        Label(  'abdominal_wall'          ,  7 ,      5 , 'Abdominal Wall'          , 0       , True        , False    , (  210, 140, 140) ),
-        Label(  'blood'                   ,  8 ,      6 , 'Blood'                   , 7       , True        , False    , (  255,   0,   0) ),
-        Label(  'cystic_duct'             ,  9 ,      7 , 'Cystic Duct'             , 8       , True        , False    , (  255, 255,   0) ),
-        Label(  'l-hook_electrocautery'   , 10 ,      8 , 'Instrument'              , 5       , True        , False    , (  169, 255, 184) ),
-        Label(  'hepatic_vein'            , 11 ,      9 , 'Hepatic Vein'            , 11      , True        , False    , (    0,  50, 128) ),
-        Label(  'gallbladder'             , 12 ,     10 , 'Gallbladder'             , 10      , True        , False    , (  255, 160, 165) ),
-        Label(  'liver_ligament'          , 13 ,     11 , 'Liver Ligament'          , 12      , True        , False    , (  111,  74,   0) ),
+                  #       name                        id    trainId   category               catId     hasInstances   ignoreInEval   color
+        CityscapesClass(  'unlabeled'               ,  0 ,    255 , 'frame'                   , 0       , False       , True     , (  255, 255, 255) ),
+        CityscapesClass(  'black_background'        ,  1 ,    255 , 'Black Background'        , 1       , False       , True     , (  127, 127, 127) ),
+        CityscapesClass(  'liver'                   ,  2 ,      0 , 'Liver'                   , 2       , True        , False    , (  255, 114, 114) ),
+        CityscapesClass(  'gastrointestinal_tract'  ,  3 ,      1 , 'Gastrointestinal Tract'  , 3       , True        , False    , (  231,  70, 156) ),
+        CityscapesClass(  'fat'                     ,  4 ,      2 , 'Fat'                     , 4       , True        , False    , (  186, 183,  75) ),
+        CityscapesClass(  'grasper'                 ,  5 ,      3 , 'Instrument'              , 5       , True        , False    , (  170, 255,   0) ),
+        CityscapesClass(  'connective_tissue'       ,  6 ,      4 , 'Connective Tissue'       , 6       , True        , False    , (  255,  85,   0) ),
+        CityscapesClass(  'abdominal_wall'          ,  7 ,      5 , 'Abdominal Wall'          , 0       , True        , False    , (  210, 140, 140) ),
+        CityscapesClass(  'blood'                   ,  8 ,      6 , 'Blood'                   , 7       , True        , False    , (  255,   0,   0) ),
+        CityscapesClass(  'cystic_duct'             ,  9 ,      7 , 'Cystic Duct'             , 8       , True        , False    , (  255, 255,   0) ),
+        CityscapesClass(  'l-hook_electrocautery'   , 10 ,      8 , 'Instrument'              , 5       , True        , False    , (  169, 255, 184) ),
+        CityscapesClass(  'hepatic_vein'            , 11 ,      9 , 'Hepatic Vein'            , 11      , True        , False    , (    0,  50, 128) ),
+        CityscapesClass(  'gallbladder'             , 12 ,     10 , 'Gallbladder'             , 10      , True        , False    , (  255, 160, 165) ),
+        CityscapesClass(  'liver_ligament'          , 13 ,     11 , 'Liver Ligament'          , 12      , True        , False    , (  111,  74,   0) ),
     ]
 
     train_id_to_color = [c.color for c in classes if (c.train_id != -1 and c.train_id != 255)]
