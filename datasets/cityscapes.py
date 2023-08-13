@@ -54,9 +54,8 @@ class Cityscapes(data.Dataset):
         self.root = os.path.expanduser(root)
         self.mode = 'gtFine'
         self.target_type = target_type
-        self.images_dir = os.path.join(self.root, 'leftImg8bit', split)
-
-        self.targets_dir = os.path.join(self.root, self.mode, split)
+        self.images_dir = os.path.join(f'{root}/gtFine/images', split)
+        self.targets_dir = os.path.join(f'{root}/gtFine/labels', split)
         self.transform = transform
 
         self.split = split
@@ -77,8 +76,7 @@ class Cityscapes(data.Dataset):
 
             for file_name in os.listdir(img_dir):
                 self.images.append(os.path.join(img_dir, file_name))
-                target_name = '{}_{}'.format(file_name.split('_leftImg8bit')[0],
-                                             self._get_target_suffix(self.mode, self.target_type))
+                target_name = '{}_endo_color_mask.png'.format(file_name.split('_endo.png')[0])
                 self.targets.append(os.path.join(target_dir, target_name))
 
     @classmethod
