@@ -283,7 +283,7 @@ def main():
         }, path)
         print("Model saved as %s" % path)
 
-    utils.mkdir('content/gdrive/MyDrive/checkpoints')
+    utils.mkdir('/content/gdrive/MyDrive/checkpoints')
     # Restore
     best_score = 0.0
     cur_itrs = 0
