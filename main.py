@@ -145,8 +145,7 @@ def get_dataset(opts):
             et.ExtNormalize(mean=[0.485, 0.456, 0.406],
                             std=[0.229, 0.224, 0.225]),
         ])
-        print(root=opts.data_root, split='train', transform=train_transform)
-        print(root=opts.data_root, split='val', transform=train_transform)
+        
         train_dst = Cityscapes(root=opts.data_root,
                                split='train', transform=train_transform)
         val_dst = Cityscapes(root=opts.data_root,
