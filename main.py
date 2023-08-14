@@ -348,7 +348,7 @@ def main():
                 interval_loss = 0.0
 
             if (cur_itrs) % opts.val_interval == 0:
-                save_ckpt('content/gdrive/MyDrive/checkpoints/latest_%s_%s_os%d.pth' %
+                save_ckpt('/content/gdrive/MyDrive/checkpoints/latest_%s_%s_os%d.pth' %
                           (opts.model, opts.dataset, opts.output_stride))
                 print("validation...")
                 model.eval()
@@ -358,7 +358,7 @@ def main():
                 print(metrics.to_str(val_score))
                 if val_score['Mean IoU'] > best_score:  # save best model
                     best_score = val_score['Mean IoU']
-                    save_ckpt('content/gdrive/MyDrive/checkpoints/best_%s_%s_os%d.pth' %
+                    save_ckpt('/content/gdrive/MyDrive/checkpoints/best_%s_%s_os%d.pth' %
                               (opts.model, opts.dataset, opts.output_stride))
 
                 if vis is not None:  # visualize validation score and samples
