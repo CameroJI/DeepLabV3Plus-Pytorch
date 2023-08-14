@@ -62,11 +62,6 @@ class StreamSegMetrics(_StreamMetrics):
             - fwavacc
         """
         hist = self.confusion_matrix
-        
-        print("\n",hist,"\n")
-        print("\n",hist.sum(),"\n")
-        print("\n",hist.sum()(axis = 1),"\n")
-        
         acc = np.diag(hist).sum() / hist.sum()
         acc_cls = np.diag(hist) / hist.sum(axis=1)
         acc_cls = np.nanmean(acc_cls)
