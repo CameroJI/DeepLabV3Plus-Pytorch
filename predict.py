@@ -64,7 +64,7 @@ def main():
         opts.num_classes = 21
         decode_fn = VOCSegmentation.decode_target
     elif opts.dataset.lower() == 'cityscapes':
-        opts.num_classes = 19
+        opts.num_classes = 14
         decode_fn = Cityscapes.decode_target
 
     os.environ['CUDA_VISIBLE_DEVICES'] = opts.gpu_id
