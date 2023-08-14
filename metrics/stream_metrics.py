@@ -28,6 +28,7 @@ class StreamSegMetrics(_StreamMetrics):
     """
     def __init__(self, n_classes):
         self.n_classes = n_classes
+        print(f'\nClases: {n_classes}\n')
         self.confusion_matrix = np.zeros((n_classes, n_classes))
 
     def update(self, label_trues, label_preds):
