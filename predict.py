@@ -131,7 +131,7 @@ def main():
             colorized_preds = decode_fn(pred).astype('uint8')
             colorized_preds = Image.fromarray(colorized_preds)
             if opts.save_val_results_to:
-                colorized_preds.save(os.path.join(opts.save_val_results_to, img_name+'.png'))
+                colorized_preds.save(os.path.join(opts.save_val_results_to, img_name+'_pred.png'))
 
 if __name__ == '__main__':
     main()
