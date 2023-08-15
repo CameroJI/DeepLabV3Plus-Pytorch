@@ -85,7 +85,7 @@ class Cityscapes(data.Dataset):
 
     @classmethod
     def decode_target(cls, target):
-        target[target == 255] = 13
+        target[target == 255] = 12
         #target = target.astype('uint8') + 1
         return cls.train_id_to_color[target]
 
