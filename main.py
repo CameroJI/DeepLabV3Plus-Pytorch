@@ -158,8 +158,8 @@ def validate(opts, model, loader, device, metrics, ret_samples_ids=None):
     metrics.reset()
     ret_samples = []
     if opts.save_val_results:
-        if not os.path.exists('/content/gdrive/MyDrive/results'):
-            os.mkdir('/content/gdrive/MyDrive/results')
+        if not os.path.exists('/content/gdrive/MyDrive/DeepLabV3/results'):
+            os.mkdir('/content/gdrive/MyDrive/DeepLabV3/results')
         denorm = utils.Denormalize(mean=[0.485, 0.456, 0.406],
                                    std=[0.229, 0.224, 0.225])
         img_id = 0
@@ -189,9 +189,9 @@ def validate(opts, model, loader, device, metrics, ret_samples_ids=None):
                     target = loader.dataset.decode_target(target).astype(np.uint8)
                     pred = loader.dataset.decode_target(pred).astype(np.uint8)
 
-                    Image.fromarray(image).save('/content/gdrive/MyDrive/results/%d_image.png' % img_id)
-                    Image.fromarray(target).save('/content/gdrive/MyDrive/results/%d_target.png' % img_id)
-                    Image.fromarray(pred).save('/content/gdrive/MyDrive/results/%d_pred.png' % img_id)
+                    Image.fromarray(image).save('/content/gdrive/MyDrive/DeepLabV3/results/%d_image.png' % img_id)
+                    Image.fromarray(target).save('/content/gdrive/MyDrive/DeepLabV3/results/%d_target.png' % img_id)
+                    Image.fromarray(pred).save('/content/gdrive/MyDrive/DeepLabV3/results/%d_pred.png' % img_id)
 
                     fig = plt.figure()
                     plt.imshow(image)
@@ -200,7 +200,7 @@ def validate(opts, model, loader, device, metrics, ret_samples_ids=None):
                     ax = plt.gca()
                     ax.xaxis.set_major_locator(matplotlib.ticker.NullLocator())
                     ax.yaxis.set_major_locator(matplotlib.ticker.NullLocator())
-                    plt.savefig('/content/gdrive/MyDrive/results/%d_overlay.png' % img_id, bbox_inches='tight', pad_inches=0)
+                    plt.savefig('/content/gdrive/MyDrive/DeepLabV3/results/%d_overlay.png' % img_id, bbox_inches='tight', pad_inches=0)
                     plt.close()
                     img_id += 1
 
@@ -283,7 +283,7 @@ def main():
         }, path)
         print("Model saved as %s" % path)
 
-    utils.mkdir('/content/gdrive/MyDrive/checkpoints')
+    utils.mkdir('/content/gdrive/MyDrive/DeepLabV3/checkpoints')
     # Restore
     best_score = 0.0
     cur_itrs = 0
@@ -348,7 +348,7 @@ def main():
                 interval_loss = 0.0
 
             if (cur_itrs) % opts.val_interval == 0:
-                save_ckpt('/content/gdrive/MyDrive/checkpoints/latest_%s_%s_os%d.pth' %
+                save_ckpt('/content/gdrive/MyDrive/DeepLabV3/checkpoints/latest_%s_%s_os%d.pth' %
                           (opts.model, opts.dataset, opts.output_stride))
                 print("validation...")
                 model.eval()
@@ -358,7 +358,7 @@ def main():
                 print(metrics.to_str(val_score))
                 if val_score['Mean IoU'] > best_score:  # save best model
                     best_score = val_score['Mean IoU']
-                    save_ckpt('/content/gdrive/MyDrive/checkpoints/best_%s_%s_os%d.pth' %
+                    save_ckpt('/content/gdrive/MyDrive/DeepLabV3/checkpoints/best_%s_%s_os%d.pth' %
                               (opts.model, opts.dataset, opts.output_stride))
 
                 if vis is not None:  # visualize validation score and samples
