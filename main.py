@@ -158,8 +158,8 @@ def validate(opts, model, loader, device, metrics, ret_samples_ids=None):
     metrics.reset()
     ret_samples = []
     if opts.save_val_results:
-        if not os.path.exists('results'):
-            os.mkdir('results')
+        if not os.path.exists('/content/gdrive/MyDrive/results'):
+            os.mkdir('/content/gdrive/MyDrive/results')
         denorm = utils.Denormalize(mean=[0.485, 0.456, 0.406],
                                    std=[0.229, 0.224, 0.225])
         img_id = 0
@@ -189,9 +189,9 @@ def validate(opts, model, loader, device, metrics, ret_samples_ids=None):
                     target = loader.dataset.decode_target(target).astype(np.uint8)
                     pred = loader.dataset.decode_target(pred).astype(np.uint8)
 
-                    Image.fromarray(image).save('results/%d_image.png' % img_id)
-                    Image.fromarray(target).save('results/%d_target.png' % img_id)
-                    Image.fromarray(pred).save('results/%d_pred.png' % img_id)
+                    Image.fromarray(image).save('/content/gdrive/MyDrive/results/%d_image.png' % img_id)
+                    Image.fromarray(target).save('/content/gdrive/MyDrive/results/%d_target.png' % img_id)
+                    Image.fromarray(pred).save('/content/gdrive/MyDrive/results/%d_pred.png' % img_id)
 
                     fig = plt.figure()
                     plt.imshow(image)
@@ -200,7 +200,7 @@ def validate(opts, model, loader, device, metrics, ret_samples_ids=None):
                     ax = plt.gca()
                     ax.xaxis.set_major_locator(matplotlib.ticker.NullLocator())
                     ax.yaxis.set_major_locator(matplotlib.ticker.NullLocator())
-                    plt.savefig('results/%d_overlay.png' % img_id, bbox_inches='tight', pad_inches=0)
+                    plt.savefig('/content/gdrive/MyDrive/results/%d_overlay.png' % img_id, bbox_inches='tight', pad_inches=0)
                     plt.close()
                     img_id += 1
 
@@ -213,7 +213,7 @@ def main():
     if opts.dataset.lower() == 'voc':
         opts.num_classes = 21
     elif opts.dataset.lower() == 'cityscapes':
-        opts.num_classes = 14
+        opts.num_classes = 12
 
     # Setup visualization
     vis = Visualizer(port=opts.vis_port,
