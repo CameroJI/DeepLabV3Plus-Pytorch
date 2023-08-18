@@ -363,18 +363,9 @@ def main():
                 interval_loss = interval_loss / 10
                 print("Epoch %d, Itrs %d/%d, Loss=%f" %
                       (cur_epochs, cur_itrs, opts.total_itrs, interval_loss))
-
-                dataFile = openpyxl.load_workbook('/content/gdrive/MyDrive/trainData.xlsx')
-                sheet = dataFile["Hoja1"]
-                sheet.cell(row = (cur_itrs / 10) + 1, column = 1).value = cur_itrs / 10
-                sheet.cell(row = (cur_itrs / 10) + 1, column = 2).value = interval_loss
-                sheet.cell(row = (cur_itrs / 10) + 1, column = 3).value = val_score['Overall Acc']
-                sheet.cell(row = (cur_itrs / 10) + 1, column = 4).value = val_score['Mean IoU']
-                dataFile.save('/content/gdrive/MyDrive/trainData.xlsx')
-                
                 interval_loss = 0.0
 
-            if (cur_itrs) % opts.val_interval == 0:
+            if (cur_itrs) % v == 0:
                 save_ckpt('/content/gdrive/MyDrive/DeepLabV3/checkpoints/latest_%s_%s_os%d.pth' %
                           (opts.model, opts.dataset, opts.output_stride))
                 print("validation...")
@@ -383,6 +374,15 @@ def main():
                     opts=opts, model=model, loader=val_loader, device=device, metrics=metrics,
                     ret_samples_ids=vis_sample_id)
                 print(metrics.to_str(val_score))
+                
+                dataFile = openpyxl.load_workbook('/content/gdrive/MyDrive/trainData.xlsx')
+                sheet = dataFile["Hoja1"]
+                sheet.cell(row = (cur_itrs / opts.val_interval) + 1, column = 1).value = cur_itrs / 10
+                sheet.cell(row = (cur_itrs / opts.val_interval) + 1, column = 2).value = interval_loss
+                sheet.cell(row = (cur_itrs / opts.val_interval) + 1, column = 3).value = val_score['Overall Acc']
+                sheet.cell(row = (cur_itrs / opts.val_interval) + 1, column = 4).value = val_score['Mean IoU']
+                dataFile.save('/content/gdrive/MyDrive/trainData.xlsx')
+                
                 if val_score['Mean IoU'] > best_score:  # save best model
                     best_score = val_score['Mean IoU']
                     save_ckpt('/content/gdrive/MyDrive/DeepLabV3/checkpoints/best_%s_%s_os%d.pth' %
