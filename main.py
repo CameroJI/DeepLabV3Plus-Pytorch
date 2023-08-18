@@ -309,12 +309,21 @@ def main():
         model = nn.DataParallel(model)
         model.to(device)
 
-        dataFile = openpyxl.load_workbook('/content/gdrive/MyDrive/trainData.xlsx')
-        sheet = dataFile["Hoja1"]
-        sheet.cell(row = 1, column = 1).value = 'Loss'
-        sheet.cell(row = 1, column = 2).value = 'Overall Acc'
-        sheet.cell(row = 1, column = 3).value = ['Mean IoU'
-        dataFile.save('/content/gdrive/MyDrive/trainData.xlsx')
+    
+    path = '/content/gdrive/MyDrive/trainData.xlsx'
+    if not os.path.exists(path):
+        wb = Workbook()
+        ws = wb.active
+        ws.title = "Hoja1"
+        wb.save(path)
+
+    dataFile = openpyxl.load_workbook(path)
+    sheet = dataFile["Hoja1"]
+    sheet.cell(row = 1, column = 1.value = 'Iter'
+    sheet.cell(row = 1, column = 2).value = 'Loss'
+    sheet.cell(row = 1, column = 3).value = 'Overall Acc'
+    sheet.cell(row = 1, column = 4).value = 'Mean IoU'
+    dataFile.save(path)
 
     # ==========   Train Loop   ==========#
     vis_sample_id = np.random.randint(0, len(val_loader), opts.vis_num_samples,
@@ -357,9 +366,10 @@ def main():
 
                 dataFile = openpyxl.load_workbook('/content/gdrive/MyDrive/trainData.xlsx')
                 sheet = dataFile["Hoja1"]
-                sheet.cell(row = (cur_itrs / 10) + 1, column = 1).value = interval_loss
-                sheet.cell(row = (cur_itrs / 10) + 1, column = 2).value = val_score['Overall Acc']
-                sheet.cell(row = (cur_itrs / 10) + 1, column = 3).value = val_score['Mean IoU']
+                sheet.cell(row = (cur_itrs / 10) + 1, column = 1).value = cur_itrs / 10
+                sheet.cell(row = (cur_itrs / 10) + 1, column = 2).value = interval_loss
+                sheet.cell(row = (cur_itrs / 10) + 1, column = 3).value = val_score['Overall Acc']
+                sheet.cell(row = (cur_itrs / 10) + 1, column = 4).value = val_score['Mean IoU']
                 dataFile.save('/content/gdrive/MyDrive/trainData.xlsx')
                 
                 interval_loss = 0.0
