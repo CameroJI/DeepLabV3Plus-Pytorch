@@ -319,7 +319,7 @@ def main():
 
     dataFile = openpyxl.load_workbook(path)
     sheet = dataFile["Hoja1"]
-    sheet.cell(row = 1, column = 1.value = 'Iter'
+    sheet.cell(row = 1, column = 1).value = 'Iter'
     sheet.cell(row = 1, column = 2).value = 'Loss'
     sheet.cell(row = 1, column = 3).value = 'Overall Acc'
     sheet.cell(row = 1, column = 4).value = 'Mean IoU'
