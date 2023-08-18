@@ -381,10 +381,10 @@ def main():
                 
                 dataFile = openpyxl.load_workbook('/content/gdrive/MyDrive/trainData.xlsx')
                 sheet = dataFile["Hoja1"]
-                sheet.cell(row = (cur_itrs / opts.val_interval) + 1, column = 1).value = cur_itrs / opts.val_interval
-                sheet.cell(row = (cur_itrs / opts.val_interval) + 1, column = 2).value = loss_average / cnt
-                sheet.cell(row = (cur_itrs / opts.val_interval) + 1, column = 3).value = val_score['Overall Acc']
-                sheet.cell(row = (cur_itrs / opts.val_interval) + 1, column = 4).value = val_score['Mean IoU']
+                sheet.cell(row = int((cur_itrs / opts.val_interval)) + 1, column = 1).value = cur_itrs / opts.val_interval
+                sheet.cell(row = int((cur_itrs / opts.val_interval)) + 1, column = 2).value = loss_average / cnt
+                sheet.cell(row = int((cur_itrs / opts.val_interval)) + 1, column = 3).value = val_score['Overall Acc']
+                sheet.cell(row = int((cur_itrs / opts.val_interval)) + 1, column = 4).value = val_score['Mean IoU']
                 dataFile.save('/content/gdrive/MyDrive/trainData.xlsx')
 
                 loss_average = 0
