@@ -4,6 +4,7 @@ import utils
 import os
 import random
 import argparse
+import openpyxl
 import numpy as np
 
 from torch.utils import data
@@ -307,6 +308,13 @@ def main():
         model = nn.DataParallel(model)
         model.to(device)
 
+        dataFile = openpyxl.load_workbook('/content/gdrive/MyDrive/trainData.xlsx')
+        sheet = dataFile["Hoja1"]
+        sheet.cell(row = 1, column = 1).value = 'Loss'
+        sheet.cell(row = 1, column = 2).value = 'Overall Acc'
+        sheet.cell(row = 1, column = 3).value = ['Mean IoU'
+        dataFile.save('/content/gdrive/MyDrive/trainData.xlsx')
+
     # ==========   Train Loop   ==========#
     vis_sample_id = np.random.randint(0, len(val_loader), opts.vis_num_samples,
                                       np.int32) if opts.enable_vis else None  # sample idxs for visualization
@@ -345,6 +353,14 @@ def main():
                 interval_loss = interval_loss / 10
                 print("Epoch %d, Itrs %d/%d, Loss=%f" %
                       (cur_epochs, cur_itrs, opts.total_itrs, interval_loss))
+
+                dataFile = openpyxl.load_workbook('/content/gdrive/MyDrive/trainData.xlsx')
+                sheet = dataFile["Hoja1"]
+                sheet.cell(row = (cur_itrs / 10) + 1, column = 1).value = interval_loss
+                sheet.cell(row = (cur_itrs / 10) + 1, column = 2).value = val_score['Overall Acc']
+                sheet.cell(row = (cur_itrs / 10) + 1, column = 3).value = val_score['Mean IoU']
+                dataFile.save('/content/gdrive/MyDrive/trainData.xlsx')
+                
                 interval_loss = 0.0
 
             if (cur_itrs) % opts.val_interval == 0:
