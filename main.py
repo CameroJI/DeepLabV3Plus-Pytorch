@@ -365,7 +365,7 @@ def main():
                       (cur_epochs, cur_itrs, opts.total_itrs, interval_loss))
                 interval_loss = 0.0
 
-            if (cur_itrs) % v == 0:
+            if (cur_itrs) % opts.val_interval == 0:
                 save_ckpt('/content/gdrive/MyDrive/DeepLabV3/checkpoints/latest_%s_%s_os%d.pth' %
                           (opts.model, opts.dataset, opts.output_stride))
                 print("validation...")
