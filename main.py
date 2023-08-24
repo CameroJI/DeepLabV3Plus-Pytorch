@@ -388,12 +388,11 @@ def main():
                 sheet.cell(row = int((cur_itrs / opts.val_interval)) + 1, column = 2).value = loss_average / cnt
                 sheet.cell(row = int((cur_itrs / opts.val_interval)) + 1, column = 3).value = val_score['Overall Acc']
                 sheet.cell(row = int((cur_itrs / opts.val_interval)) + 1, column = 4).value = val_score['Mean IoU']
+                for class_num in range(opts.num_classes):
+                    sheet.cell(row = int((cur_itrs / opts.val_interval)) + 1, column = 4 + (class_num + 1)).value = val_score['Class IoU'][class_num]
+                    
                 dataFile.save('/content/gdrive/MyDrive/trainData.xlsx')
-
-                print("\nAAAAA\n")
-                print(val_score['Class IoU'])
-                print(val_score['Class IoU'][0])
-
+                
                 loss_average = 0
                 cnt = 0
                 
