@@ -390,6 +390,10 @@ def main():
                 sheet.cell(row = int((cur_itrs / opts.val_interval)) + 1, column = 4).value = val_score['Mean IoU']
                 dataFile.save('/content/gdrive/MyDrive/trainData.xlsx')
 
+                print("\nAAAAA\n")
+                print(val_score['Class IoU'])
+                print(val_score['Class IoU'][0])
+
                 loss_average = 0
                 cnt = 0
                 
