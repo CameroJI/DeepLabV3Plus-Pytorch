@@ -323,6 +323,9 @@ def main():
     sheet.cell(row = 1, column = 2).value = 'Loss'
     sheet.cell(row = 1, column = 3).value = 'Overall Acc'
     sheet.cell(row = 1, column = 4).value = 'Mean IoU'
+    for class_num in range(opts.num_classes):
+        sheet.cell(row = 1, column = 4 + (class_num + 1)).value = f'Class {class_num}'
+    
     dataFile.save(path)
 
     # ==========   Train Loop   ==========#
