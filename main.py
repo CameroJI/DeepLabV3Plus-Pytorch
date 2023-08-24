@@ -215,7 +215,7 @@ def main():
     if opts.dataset.lower() == 'voc':
         opts.num_classes = 21
     elif opts.dataset.lower() == 'cityscapes':
-        opts.num_classes = 12
+        opts.num_classes = 13
 
     # Setup visualization
     vis = Visualizer(port=opts.vis_port,
