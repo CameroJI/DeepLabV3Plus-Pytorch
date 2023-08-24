@@ -23,21 +23,19 @@ class Cityscapes(data.Dataset):
     CityscapesClass = namedtuple('CityscapesClass', ['name', 'id', 'train_id', 'category', 'category_id',
                                                      'has_instances', 'ignore_in_eval', 'color'])
     classes = [
-                      #       name                        id    trainId   category               catId     hasInstances   ignoreInEval   color
-        CityscapesClass(  'unlabeled'               ,  0 ,    255 , 'frame'                   , 0       , False       , True     , (  255, 255, 255) ),
-        CityscapesClass(  'black_background'        ,  1 ,      0 , 'Black Background'        , 1       , False       , True     , (  127, 127, 127) ),
-        CityscapesClass(  'liver'                   ,  2 ,      1 , 'Liver'                   , 2       , True        , False    , (  255, 114, 114) ),
-        CityscapesClass(  'gastrointestinal_tract'  ,  3 ,      2 , 'Gastrointestinal Tract'  , 3       , True        , False    , (  231,  70, 156) ),
-        CityscapesClass(  'fat'                     ,  4 ,      3 , 'Fat'                     , 4       , True        , False    , (  186, 183,  75) ),
-        CityscapesClass(  'grasper'                 ,  5 ,      4 , 'Instrument'              , 5       , True        , False    , (  170, 255,   0) ),
-        CityscapesClass(  'connective_tissue'       ,  6 ,      5 , 'Connective Tissue'       , 6       , True        , False    , (  255,  85,   0) ),
-        CityscapesClass(  'abdominal_wall'          ,  7 ,      6 , 'Abdominal Wall'          , 0       , True        , False    , (  210, 140, 140) ),
-        CityscapesClass(  'blood'                   ,  8 ,      7 , 'Blood'                   , 7       , True        , False    , (  255,   0,   0) ),
-        CityscapesClass(  'cystic_duct'             ,  9 ,      8 , 'Cystic Duct'             , 8       , True        , False    , (  255, 255,   0) ),
-        CityscapesClass(  'l-hook_electrocautery'   , 10 ,      9 , 'Instrument'              , 5       , True        , False    , (  169, 255, 184) ),
-        CityscapesClass(  'hepatic_vein'            , 11 ,     10 , 'Hepatic Vein'            , 11      , True        , False    , (    0,  50, 128) ),
-        CityscapesClass(  'gallbladder'             , 12 ,     11 , 'Gallbladder'             , 10      , True        , False    , (  255, 160, 165) ),
-        CityscapesClass(  'liver_ligament'          , 13 ,     12 , 'Liver Ligament'          , 12      , True        , False    , (  111,  74,   0) ),
+            #              name                        id    trainId   category            catId    hasInstances   ignoreInEval      color
+        CityscapesClass(  'black_background'        ,  0 ,      0 , 'Black Background'        , 0       , False       , True     , (    0,   0,   0) ),
+        CityscapesClass(  'instrument_shaft'        ,  1 ,      1 , 'Instrument'              , 1       , True        , False    , (    0, 255,   0) ),
+        CityscapesClass(  'instrument_clasper'      ,  2 ,      2 , 'Instrument'              , 1       , True        , False    , (    0, 255, 255) ),
+        CityscapesClass(  'instrument_wrist'        ,  3 ,      3 , 'Instrument'              , 1       , True        , False    , (  125, 255,  12) ),
+        CityscapesClass(  'kidney_parenchyma'       ,  4 ,      4 , 'Kidney Parenchyma'       , 2       , True        , False    , (  255,  55,   0) ),
+        CityscapesClass(  'covered_kidney'          ,  5 ,      5 , 'Covered Kidney'          , 3       , True        , False    , (   24,  55, 125) ),
+        CityscapesClass(  'thread'                  ,  6 ,      6 , 'Thread'                  , 4       , True        , False    , (  187, 155,  25) ),
+        CityscapesClass(  'clamps'                  ,  7 ,      7 , 'Clamps'                  , 5       , True        , False    , (    0, 255, 125) ),
+        CityscapesClass(  'suturing_needle'         ,  8 ,      8 , 'Suturing Needle'         , 6       , True        , False    , (  255, 255, 125) ),
+        CityscapesClass(  'suction_instrument'      ,  9 ,      9 , 'Instrument'              , 1       , True        , False    , (  123,  15, 175) ),
+        CityscapesClass(  'small_intestine'         , 10 ,     10 , 'Small Intestine'         , 7       , True        , False    , (  124, 155,   5) ),
+        CityscapesClass(  'ultrasound_probe'        , 11 ,     11 , 'Ultrasound Probe'        , 8       , True        , False    , (   12, 255, 141) ),
     ]
 
     train_id_to_color = [c.color for c in classes if (c.train_id != -1 and c.train_id != 255)]
