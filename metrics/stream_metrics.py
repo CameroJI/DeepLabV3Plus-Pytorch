@@ -71,6 +71,8 @@ class StreamSegMetrics(_StreamMetrics):
         fwavacc = (freq[freq > 0] * iu[freq > 0]).sum()
         cls_iu = dict(zip(range(self.n_classes), iu))
 
+        print(f'\nAAAaa: {cls_iu}\n')
+
         return {
                 "Overall Acc": acc,
                 "Mean Acc": acc_cls,
